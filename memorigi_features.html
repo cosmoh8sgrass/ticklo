@@ -1,0 +1,1325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Memorigi is a simple and yet powerful to-do list, task manager, planner, calendar, and reminder app to help you organize life and work. Its unique user interface (UI) combined with a delightful user experience (UX) makes working on your projects a breeze." />
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./assets/favicon/favicon.ico" type="image/x-icon" />
+  
+  <!-- Map CSS -->
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+  
+  <!-- Libs CSS -->
+  <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
+  
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+  
+  <!-- Title -->
+  <title>Memorigi - A simple to-do list, planner, task manager, calendar, and reminder app</title>
+</head>
+<body>
+
+<!-- MODALS -->
+<!-- Example -->
+<div class="modal fade" id="modalExample" tabindex="-1" role="dialog" aria-labelledby="modalExampleTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <!-- Close -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- Image -->
+        <div class="text-center">
+          <img src="./assets/img/illustrations/illustration-1.png" alt="..." class="img-fluid mb-3" style="width: 200px;">
+        </div>
+
+        <!-- Heading -->
+        <h2 class="fw-bold text-center mb-1" id="modalExampleTitle">
+          Schedule a demo with us
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-center text-muted mb-6 mb-md-8">
+          We can help you solve company communication.
+        </p>
+
+        <!-- Form -->
+        <form>
+          <div class="row">
+            <div class="col-12 col-md-6">
+
+              <!-- First name -->
+              <div class="form-floating">
+                <input type="text" class="form-control form-control-flush" id="registrationFirstNameModal" placeholder="First name">
+                <label for="registrationFirstNameModal">First name</label>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+
+              <!-- Last name -->
+              <div class="form-floating">
+                <input type="text" class="form-control form-control-flush" id="registrationLastNameModal" placeholder="Last name">
+                <label for="registrationLastNameModal">Last name</label>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-6">
+
+              <!-- Email -->
+              <div class="form-floating">
+                <input type="email" class="form-control form-control-flush" id="registrationEmailModal" placeholder="Email">
+                <label for="registrationEmailModal">Email</label>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+
+              <!-- Password -->
+              <div class="form-floating">
+                <input type="password" class="form-control form-control-flush" id="registrationPasswordModal" placeholder="Password">
+                <label for="registrationPasswordModal">Password</label>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+
+              <!-- Submit -->
+              <button class="btn w-100 btn-primary mt-3 lift">
+                Request a demo
+              </button>
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signup: Horizontal  -->
+<div class="modal fade" id="modalSignupHorizontal" tabindex="-1" role="dialog" aria-labelledby="modalSignupHorizontalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card card-row">
+        <div class="row gx-0">
+          <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(./assets/img/photos/photo-8.jpg);">
+
+            <!-- Image (placeholder) -->
+            <img src="./assets/img/photos/photo-8.jpg" alt="..." class="img-fluid d-md-none invisible">
+
+            <!-- Shape -->
+            <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+              <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor"/></svg>            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-body">
+
+              <!-- Close -->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSignupHorizontalTitle">
+                Sign Up
+              </h2>
+
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+
+              <!-- Form -->
+              <form class="mb-6">
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSignupHorizontalEmail">
+                    Your email
+                  </label>
+                  <input type="email" class="form-control" id="modalSignupHorizontalEmail" placeholder="Your email">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSignupHorizontalPassword">
+                    Create a password
+                  </label>
+                  <input type="password" class="form-control" id="modalSignupHorizontalPassword" placeholder="Create a password">
+                </div>
+
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" type="submit">
+                  Sign up
+                </button>
+
+              </form>
+
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Already have an account? <a href="./signin-illustration.html">Log in</a>.
+              </p>
+
+            </div>
+          </div>
+
+        </div> <!-- / .row -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signup: Vertical  -->
+<div class="modal fade" id="modalSignupVertical" tabindex="-1" role="dialog" aria-labelledby="modalSignupVerticalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card">
+
+        <!-- Close -->
+        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- Image -->
+        <img src="./assets/img/photos/photo-7.jpg" alt="..." class="card-img-top">
+
+        <!-- Shape -->
+        <div class="position-relative">
+          <div class="shape shape-bottom shape-fluid-x text-white">
+            <svg viewBox="0 0 2880 480" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="currentColor"/></svg>          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+          <!-- Heading -->
+          <h2 class="mb-0 fw-bold text-center" id="modalSignupVerticalTitle">
+            Sign Up
+          </h2>
+
+          <!-- Text -->
+          <p class="mb-6 text-center text-muted">
+            Simplify your workflow in minutes.
+          </p>
+
+          <!-- Form -->
+          <form class="mb-6">
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="visually-hidden" for="modalSignupVerticalEmail">
+                Your email
+              </label>
+              <input type="email" class="form-control" id="modalSignupVerticalEmail" placeholder="Your email">
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-5">
+              <label class="visually-hidden" for="modalSignupVerticalPassword">
+                Create a password
+              </label>
+              <input type="password" class="form-control" id="modalSignupVerticalPassword" placeholder="Create a password">
+            </div>
+
+            <!-- Submit -->
+            <button class="btn w-100 btn-primary" type="submit">
+              Sign up
+            </button>
+
+          </form>
+
+          <!-- Text -->
+          <p class="mb-0 fs-sm text-center text-muted">
+            Already have an account? <a href="./signin-illustration.html">Log in</a>.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signin: Horizontal  -->
+<div class="modal fade" id="modalSigninHorizontal" tabindex="-1" role="dialog" aria-labelledby="modalSigninHorizontalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card card-row">
+        <div class="row gx-0">
+          <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(./assets/img/photos/photo-1.jpg);">
+
+            <!-- Image (placeholder) -->
+            <img src="./assets/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
+
+            <!-- Shape -->
+            <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+              <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor"/></svg>            </div>
+
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-body">
+
+              <!-- Close -->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSigninHorizontalTitle">
+                Sign In
+              </h2>
+
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+
+              <!-- Form -->
+              <form class="mb-6">
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSigninHorizontalEmail">
+                    Your email
+                  </label>
+                  <input type="email" class="form-control" id="modalSigninHorizontalEmail" placeholder="Your email">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSigninHorizontalPassword">
+                    Enter your password
+                  </label>
+                  <input type="password" class="form-control" id="modalSigninHorizontalPassword" placeholder="Enter your password">
+                </div>
+
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" type="submit">
+                  Sign in
+                </button>
+
+              </form>
+
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Don't have an account yet? <a href="./signin-illustration.html">Sign up</a>.
+              </p>
+
+            </div>
+          </div>
+
+        </div> <!-- / .row -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signin: Vertical  -->
+<div class="modal fade" id="modalSigninVertical" tabindex="-1" role="dialog" aria-labelledby="modalSigninVerticalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card">
+
+        <!-- Close -->
+        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- Image -->
+        <img src="./assets/img/photos/photo-21.jpg" alt="..." class="card-img-top">
+
+        <!-- Shape -->
+        <div class="position-relative">
+          <div class="shape shape-bottom shape-fluid-x text-white">
+            <svg viewBox="0 0 2880 480" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="currentColor"/></svg>          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+          <!-- Heading -->
+          <h2 class="mb-0 fw-bold text-center" id="modalSigninVerticalTitle">
+            Sign In
+          </h2>
+
+          <!-- Text -->
+          <p class="mb-6 text-center text-muted">
+            Simplify your workflow in minutes.
+          </p>
+
+          <!-- Form -->
+          <form class="mb-6">
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="visually-hidden" for="modalSigninVerticalEmail">
+                Your email
+              </label>
+              <input type="email" class="form-control" id="modalSigninVerticalEmail" placeholder="Your email">
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-5">
+              <label class="visually-hidden" for="modalSigninVerticalPassword">
+                Enter your password
+              </label>
+              <input type="password" class="form-control" id="modalSigninVerticalPassword" placeholder="Enter your password">
+            </div>
+
+            <!-- Submit -->
+            <button class="btn w-100 btn-primary" type="submit">
+              Sign in
+            </button>
+
+          </form>
+
+          <!-- Text -->
+          <p class="mb-0 fs-sm text-center text-muted">
+            Don't have an account yet? <a href="./signin-illustration.html">Sign up</a>.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payment -->
+<div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="modalPaymentTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <!-- Close -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- Heading -->
+        <h2 class="fw-bold text-center mb-1" id="modalPaymentTitle">
+          Add Payment
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-center text-muted mb-6 mb-md-8">
+          Simplify your workflow in minutes.
+        </p>
+
+        <!-- Form -->
+        <form>
+
+          <!-- Name -->
+          <div class="form-group">
+            <label class="form-label" for="modalPaymentName">Name on card</label>
+            <input class="form-control" id="modalPaymentName" type="text" placeholder="First Last">
+          </div>
+
+          <!-- Name -->
+          <div class="form-group">
+            <label class="form-label" for="modalPaymentNumbber">Card number</label>
+            <input class="form-control" id="modalPaymentNumbber" type="number" placeholder="4242 4242 4242 4242">
+          </div>
+
+          <!-- Name -->
+          <div class="form-group">
+            <label class="form-label" for="modalPaymentDate">Exp. Date</label>
+            <input class="form-control" id="modalPaymentDate" type="text" placeholder="03/2023">
+          </div>
+
+          <!-- Submit -->
+          <button class="btn w-100 btn-primary mt-3 lift">
+            Add Payment Method
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="./index.html">
+            <img src="./assets/img/brand.svg" class="navbar-brand-img" alt="...">
+        </a>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fe fe-x"></i>
+            </button>
+
+            <!-- Navigation -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarFeatures" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                        Features
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-xl p-0" aria-labelledby="navbarFeatures">
+                        <div class="row gx-0">
+                            <div class="col-12 col-lg-4">
+                                <div class="dropdown-img-start" style="background-image: url(./assets/img/photos/photo-3.jpg);">
+
+                                    <!-- Heading -->
+                                    <h4 class="fw-bold text-white mb-3 text-center">
+                                        Want to see all features?
+                                    </h4>
+
+                                    <!-- Button -->
+                                    <a href="./features.html" class="btn btn-sm btn-white shadow-dark font-size-sm" style="line-height: 1.1">
+                                        Meet Memorigi
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <div class="dropdown-body">
+                                    <div class="row gx-0">
+                                        <div class="col-4">
+
+                                            <!-- Heading -->
+                                            <h6 class="dropdown-header">
+                                                Organize
+                                            </h6>
+
+                                            <!-- List -->
+                                            <a class="dropdown-item" href="./features.html#groups" data-scroll>
+                                                Groups
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#lists" data-scroll>
+                                                Lists
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#headings" data-scroll>
+                                                Headings
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#tasks" data-scroll>
+                                                Tasks
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#subtasks" data-scroll>
+                                                Subtasks
+                                            </a>
+                                            <a class="dropdown-item mb-5" href="./features.html#tags" data-scroll>
+                                                Tags
+                                            </a>
+
+                                        </div>
+                                        <div class="col-4">
+
+                                            <!-- Heading -->
+                                            <h6 class="dropdown-header">
+                                                Plan
+                                            </h6>
+
+                                            <!-- List -->
+                                            <a class="dropdown-item" href="./features.html#do-dates" data-scroll>
+                                                Do dates
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#deadlines" data-scroll>
+                                                Deadlines
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#recurring-tasks" data-scroll>
+                                                Recurring tasks
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#reminders" data-scroll>
+                                                Reminders
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#calendar" data-scroll>
+                                                Calendar
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#board-view" data-scroll>
+                                                Board view
+                                            </a>
+
+                                        </div>
+                                        <div class="col-4">
+
+                                            <!-- Heading -->
+                                            <h6 class="dropdown-header">
+                                                Productivity
+                                            </h6>
+
+                                            <!-- List -->
+                                            <a class="dropdown-item" href="./features.html#icons-and-colors" data-scroll>
+                                                Icons & colors
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#much-more" data-scroll>
+                                                Sorting & grouping
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#much-more" data-scroll>
+                                                Nag me
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#much-more" data-scroll>
+                                                Flexible times
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#much-more" data-scroll>
+                                                Pinned tasks
+                                            </a>
+                                            <a class="dropdown-item" href="./features.html#much-more" data-scroll>
+                                                and much more!
+                                            </a>
+
+                                        </div>
+                                    </div> <!-- / .row -->
+                                </div>
+                            </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="navbarPricing" href="./pricing.html">
+                        Pricing
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarSupport" data-bs-toggle="dropdown" href="#"
+                       aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarSupport">
+                        <div class="list-group list-group-flush">
+                            <a class="list-group-item" href="./contact.html">
+
+                                <!-- Icon -->
+                                <div class="icon icon-sm text-primary">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m12 1.9999c-5.5243 0-10 4.4791-10 10 0 5.521 4.4759 10 10 10s10-4.4759 10-10-4.4759-10-10-10zm0 17.016c-0.75021 0-1.4266-0.45194-1.7136-1.145-0.28708-0.69311-0.12835-1.4909 0.40214-2.0214 0.53049-0.53049 1.3282-0.6892 2.0214-0.40214 0.69311 0.28708 1.145 0.96344 1.145 1.7136-0.0011 1.024-0.8309 1.8537-1.8549 1.8549zm1.6129-5.2956v0.05363c0 0.26724-0.21664 0.48388-0.48388 0.48388h-2.2581c-0.26724 0-0.48388-0.21664-0.48388-0.48388v-0.16129c0-1.6557 1.2553-2.3174 2.2037-2.8492 0.81332-0.45605 1.3121-0.76614 1.3121-1.371 0-0.7992-1.019-1.3307-1.8428-1.3307-1.0964 0-1.5903 0.52984-2.3105 1.4432-0.16327 0.20693-0.46214 0.24512-0.67218 0.085888l-1.3992-1.0589c-0.20452-0.155-0.25247-0.44271-0.10928-0.65565 1.1004-1.6428 2.502-2.5702 4.6996-2.5702 2.2718 0 4.6988 1.7742 4.6988 4.1129 0 3.1049-3.3545 3.1537-3.3545 4.3013z"
+                                              fill="#335EEA" opacity=".3"/>
+                                        <path d="m12 15.306c-0.75021 0-1.4266 0.45194-1.7136 1.145-0.28708 0.69311-0.12835 1.4909 0.40214 2.0214 0.53049 0.53049 1.3282 0.6892 2.0214 0.40214 0.69311-0.28708 1.145-0.96344 1.145-1.7136 0-1.0244-0.83045-1.8549-1.8549-1.8549zm0.26855-10c-2.1976 0-3.5992 0.92743-4.6996 2.571-0.14268 0.21279-0.094767 0.49992 0.10928 0.65485l1.3992 1.0609c0.21005 0.15923 0.50892 0.12105 0.67218-0.085888 0.72017-0.91332 1.2141-1.4432 2.3105-1.4432 0.8238 0 1.8428 0.52984 1.8428 1.3307 0 0.60484-0.4988 0.91372-1.3121 1.371-0.9484 0.52984-2.2037 1.1915-2.2037 2.8472v0.16129c0 0.26724 0.21664 0.48388 0.48388 0.48388h2.2581c0.26724 0 0.48388-0.21664 0.48388-0.48388v-0.05363c0-1.1476 3.3545-1.1964 3.3545-4.3013 0-2.3387-2.427-4.1129-4.6988-4.1129z"
+                                              fill="#335EEA"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Content -->
+                                <div class="ms-4">
+
+                                    <!-- Heading -->
+                                    <h6 class="fw-bold text-uppercase text-primary mb-0">
+                                        Contact Us
+                                    </h6>
+
+                                    <!-- Text -->
+                                    <p class="fs-sm text-gray-700 mb-0">
+                                        Find answers to your questions
+                                    </p>
+
+                                </div>
+
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Button -->
+            <a class="navbar-btn btn btn-xs btn-primary lift ms-auto" href="https://memorigi.app"
+               target="_blank">
+                &nbsp;&nbsp;Sign In&nbsp;&nbsp;
+            </a>
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- WELCOME -->
+<section class="pt-6 pt-md-8">
+  <div class="container">
+    <div class="row align-items-center justify-content-center justify-content-md-between">
+      <div>
+
+        <!-- Mobile + Laptop -->
+        <div class="device-combo device-combo-macbook-iphonex mb-6 mb-md-0">
+
+          <!-- Macbook -->
+          <div class="device device-macbook" data-aos="fade-left">
+            <img src="assets/img/screenshots/desktop/memorigi-light.png" class="device-screen" alt="...">
+            <img src="assets/img/devices/macbook.svg" class="img-fluid" alt="...">
+          </div>
+
+          <!-- iPhone -->
+          <div class="device device-iphonex" data-aos="fade-left" data-aos-delay="150">
+            <img src="assets/img/screenshots/mobile/memorigi.png" class="device-screen" alt="...">
+            <img src="assets/img/devices/iphonex.svg" class="img-fluid" alt="...">
+          </div>
+
+        </div>
+
+      </div>
+      <div class="text-center mt-5" data-aos="fade-right">
+
+        <!-- Heading -->
+        <h1 class="fw-bold">
+          Meet the <span class="text-primary">all-new</span> Memorigi
+        </h1>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-6">
+          Memorigi&reg; is a simple and yet powerful to-do list, task manager, planner, calendar, and reminder app to help you <b>organize life and work</b>. Its unique user interface (UI) combined with a delightful user experience (UX) makes working on your projects a breeze.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- GROUPS -->
+<section id="groups" class="mt-5 py-10 pt-md-11 bg-gray-100">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 mb-5 mb-md-0">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-6 me-n5">
+
+            <img src="assets/img/photos/feature-groups1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right" data-aos-delay="100">
+
+          </div>
+          <div class="col-6 me-n5">
+
+            <img src="assets/img/photos/feature-groups2.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5" data-aos="fade-left">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Groups
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-4">
+          Use Groups to bundle together projects and tasks based on different responsibilities.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- LISTS -->
+<section id="lists" class="py-10 py-md-11">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 col-lg-7 order-md-2">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-6 me-n5">
+
+            <img src="assets/img/photos/feature-lists1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-left" data-aos-delay="100">
+
+          </div>
+          <div class="col-6 me-n5">
+
+            <img src="assets/img/photos/feature-lists2.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-left">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5 order-md-1" data-aos="fade-right">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Projects and Lists
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-0">
+          Use Lists as your primary way of organizing tasks and to-dos.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- HEADINGS -->
+<section id="headings" class="py-10 pt-md-11 bg-gray-100">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 mb-5 mb-md-0">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-12 me-n5">
+
+            <img src="assets/img/photos/feature-headings1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right" data-aos-delay="100">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5" data-aos="fade-left">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Headings
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-4">
+          Use Headings to break down large projects into smaller parts.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- TASKS -->
+<section id="tasks" class="py-10 py-md-11">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 col-lg-7 order-md-2">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-12 me-n5">
+
+            <img src="assets/img/photos/feature-tasks1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-left" data-aos-delay="100">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5 order-md-1" data-aos="fade-right">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Tasks
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-0">
+          Use Tasks to simplify your life. Create tasks for your work, your chores, your vacations, and anything that needs to be done.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- SUBTASKS -->
+<section id="subtasks" class="py-10 pt-md-11 bg-gray-100">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 mb-5 mb-md-0">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-12 me-n5">
+
+            <img src="assets/img/photos/feature-subtasks1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right" data-aos-delay="100">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5" data-aos="fade-left">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Subtasks
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-4">
+          Use Subtasks as the minimum unit of work to simplify complex tasks.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- TAGS -->
+<section id="tags" class="py-10 py-md-11">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 col-lg-7 order-md-2">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-12 me-n5">
+
+            <img src="assets/img/photos/feature-tags1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-left" data-aos-delay="100">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5 order-md-1" data-aos="fade-right">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Tags
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-0">
+          Use Tags to improve your organization and to simplify finding projects and tasks.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- DO DATES -->
+<section id="do-dates" class="py-10 pt-md-11 bg-gray-100">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 mb-5 mb-md-0">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-12 me-n5">
+
+            <img src="assets/img/photos/feature-do-dates1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right" data-aos-delay="100">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5" data-aos="fade-left">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Do Dates
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-4">
+          Do Dates are more flexible than traditional due dates. Simply put, a do date is the day you intend to "do" the task, not the date it has to be completed by.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- DEADLINES -->
+<section id="deadlines" class="py-10 py-md-11">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 col-lg-7 order-md-2">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-12 me-n5">
+
+            <img src="assets/img/photos/feature-deadlines1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-left" data-aos-delay="100">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5 order-md-1" data-aos="fade-right">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Deadlines
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-0">
+          Make yourself accountable by setting deadlines to your projects and tasks.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- RECURRING TASKS -->
+<section id="recurring-tasks" class="py-10 pt-md-11 bg-gray-100">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 mb-5 mb-md-0">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-12 me-n5">
+
+            <img src="assets/img/photos/feature-recurring-tasks1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right" data-aos-delay="100">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5" data-aos="fade-left">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Recurring Tasks
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-4">
+          Use Recurring Tasks for actions happening on a fixed period of time or after the task gets completed.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- REMINDERS -->
+<section id="reminders" class="py-10 py-md-11">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 col-lg-7 order-md-2">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="col-12 me-n5">
+
+            <img src="assets/img/photos/feature-reminders1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-left" data-aos-delay="100">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5 order-md-1" data-aos="fade-right">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Reminders
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-0">
+          Use Reminders for those tasks you under any circumstance cannot miss!
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar" class="py-10 pt-md-11 bg-gray-100">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 mb-5 mb-md-0">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="device device-iphonex" data-aos="fade-right" data-aos-delay="100">
+            <img src="assets/img/photos/feature-calendar1.png" class="device-screen" alt="...">
+            <img src="assets/img/devices/iphonex.svg" class="img-fluid" alt="...">
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5" data-aos="fade-left">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Calendar
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-4">
+          Use Upcoming to see tasks and projects due in the next days and further. You can integrate your Google Calendar to see events as well.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- BOARD VIEW -->
+<section id="board-view" class="py-10 py-md-11">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 col-lg-7 order-md-2">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="device device-iphonex" data-aos="fade-left" data-aos-delay="100">
+            <img src="assets/img/screenshots/mobile/feature-board-view1.png" class="device-screen" alt="...">
+            <img src="assets/img/devices/iphonex.svg" class="img-fluid" alt="...">
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5 order-md-1" data-aos="fade-right">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Board View
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-0">
+          Use Boards (aka Kanban) to get an overview of your projects. You can also drag and drop tasks and headings across different boards.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- ICONS AND COLORS -->
+<section id="icons-and-colors" class="mt-5 py-10 pt-md-11 bg-gray-100">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 mb-5 mb-md-0">
+
+        <!-- Images -->
+        <div class="row">
+          <div class="device device-iphonex" data-aos="fade-left" data-aos-delay="100">
+            <img src="assets/img/photos/feature-icons-and-colors1.png" class="device-screen" alt="...">
+            <img src="assets/img/devices/iphonex.svg" class="img-fluid" alt="...">
+          </div>
+          <div class="col-6 me-n5">
+
+            <img src="assets/img/photos/feature-icons1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right" data-aos-delay="100">
+
+          </div>
+          <div class="col-6 me-n5">
+
+            <img src="assets/img/photos/feature-colors1.png" alt="..." class="img-fluid mb-4 rounded" data-aos="fade-right">
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+      <div class="col-12 col-md-6 col-lg-5" data-aos="fade-left">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          Icons & Colors
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-4">
+          Use Icons and Colors for a richer personalized organization of your projects and to-dos.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- MUCH MORE -->
+<section id="much-more" class="py-10 py-md-11">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12 col-md-6 col-lg-10 order-md-1" data-aos="fade-right">
+
+        <!-- Heading -->
+        <h2 class="fw-bold">
+          ... and much more!
+        </h2>
+
+        <!-- Text -->
+        <p class="fs-lg text-muted mb-0">
+          - Memorigi&reg; Cloud to keep your data safe and in sync<br/>
+          - Sorting & grouping to simplify your workflow<br/>
+          - Nag me feature to help you reduce procrastination<br/>
+          - Read aloud to read your due projects and tasks aloud<br/>
+          - Flexible times to boost your productivity<br/>
+          - Pinned tasks for those important tasks you don't want to forget about<br/>
+          - Attachments to safely store your project's documents<br/>
+          - Productivity stats to stay on top of your progress<br/>
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- CTA -->
+<section class="mt-5 pt-6 pt-md-8">
+  <div class="container pb-6 pb-md-8 border-bottom">
+    <div class="row align-items-center">
+      <div class="col-12 col-md">
+
+        <!-- Heading -->
+        <h3 class="fw-bold mb-1">
+          Get Memorigi on your mobile!
+        </h3>
+
+        <!-- Text -->
+        <p class="text-muted mb-6 mb-md-0">
+          Boost your productivity by downloading our app from the store.
+        </p>
+
+      </div>
+
+      <div class="col-auto">
+
+        <a href="https://play.google.com/store/apps/details?id=io.tinbits.memorigi" target="_blank" class="text-reset d-inline-block me-1">
+          <img src="assets/img/buttons/button-play.png" class="img-fluid" alt="..." style="max-width: 200px;">
+        </a>
+
+        <a href="https://apps.samsung.com/appquery/appDetail.as?appId=io.tinbits.memorigi" target="_blank" class="text-reset d-inline-block">
+          <img src="assets/img/buttons/button-samsung.png" class="img-fluid" alt="..." style="max-width: 200px;">
+        </a>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+
+<!-- FOOTER -->
+<footer class="py-8 py-md-11 bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4 col-lg-3">
+
+        <!-- Brand -->
+        <img src="./assets/img/brand.svg" alt="..." class="footer-brand img-fluid mb-2">
+
+        <!-- Text -->
+        <p class="fs-6 text-gray-700 mb-2">
+          A simple to-do list.
+        </p>
+
+        <!-- Social -->
+        <ul class="list-unstyled list-inline list-social mb-6 mb-md-0">
+          <li class="list-inline-item list-social-item me-3">
+            <a href="https://instagram.com/memorigi.app" target="_blank" class="text-decoration-none">
+              <img src="./assets/img/icons/social/instagram.svg" class="list-social-icon" alt="...">
+            </a>
+          </li>
+          <li class="list-inline-item list-social-item me-3">
+            <a href="https://facebook.com/memorigi" target="_blank" class="text-decoration-none">
+              <img src="./assets/img/icons/social/facebook.svg" class="list-social-icon" alt="...">
+            </a>
+          </li>
+          <li class="list-inline-item list-social-item me-3">
+            <a href="https://twitter.com/memorigi" target="_blank" class="text-decoration-none">
+              <img src="./assets/img/icons/social/twitter.svg" class="list-social-icon" alt="...">
+            </a>
+          </li>
+          <li class="list-inline-item list-social-item me-3">
+            <a href="https://www.linkedin.com/company/memorigi" target="_blank" class="text-decoration-none">
+              <img src="./assets/img/icons/social/linkedin.svg" class="list-social-icon" alt="...">
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+
+        <!-- Heading -->
+        <h6 class="fw-bold text-uppercase text-gray-700">
+          Products
+        </h6>
+
+        <!-- List -->
+        <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+          <li class="mb-2">
+            <a href="https://memorigi.app" class="text-reset">
+              Memorigi for Web
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://play.google.com/store/apps/details?id=io.tinbits.memorigi" class="text-reset">
+              Memorigi for Android
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://apps.samsung.com/appquery/appDetail.as?appId=io.tinbits.memorigi" class="text-reset">
+              Memorigi for Galaxy
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+
+        <!-- Heading -->
+        <h6 class="fw-bold text-uppercase text-gray-700">
+          Support
+        </h6>
+
+        <!-- List -->
+        <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+<!--          <li class="mb-3">-->
+<!--            <a href="help-center.html" class="text-reset">-->
+<!--              Help Center-->
+<!--            </a>-->
+<!--          </li>-->
+          <li class="mb-3">
+            <a href="contact.html" class="text-reset">
+              Contact Us
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+
+        <!-- Heading -->
+        <h6 class="fw-bold text-uppercase text-gray-700">
+          Company
+        </h6>
+
+        <!-- List -->
+        <ul class="list-unstyled text-muted mb-0">
+          <li class="mb-3">
+            <a href="about.html" class="text-reset">
+              About Us
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="privacy.html" class="text-reset">
+              Privacy Policy
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="tos.html" class="text-reset">
+              Terms of Service
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+</footer>
+
+<!-- JAVASCRIPT -->
+<!-- Map JS -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+
+<!-- Vendor JS -->
+<script src="./assets/js/vendor.bundle.js"></script>
+
+<!-- Theme JS -->
+<script src="./assets/js/theme.bundle.js"></script>
+
+</body>
+</html>

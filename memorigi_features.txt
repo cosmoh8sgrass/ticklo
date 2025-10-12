@@ -1,0 +1,68 @@
+MEMORIGI FEATURES
+=================
+
+Memorigi® is a simple and yet powerful to-do list, task manager, planner, calendar, and reminder app to help you organize life and work. Its unique user interface (UI) combined with a delightful user experience (UX) makes working on your projects a breeze.
+
+ORGANIZATION FEATURES
+=====================
+
+## Groups
+Use Groups to bundle together projects and tasks based on different responsibilities.
+
+## Projects and Lists
+Use Lists as your primary way of organizing tasks and to-dos.
+
+## Headings
+Use Headings to break down large projects into smaller parts.
+
+## Tasks
+Use Tasks to simplify your life. Create tasks for your work, your chores, your vacations, and anything that needs to be done.
+
+## Subtasks
+Use Subtasks as the minimum unit of work to simplify complex tasks.
+
+## Tags
+Use Tags to improve your organization and to simplify finding projects and tasks.
+
+PLANNING FEATURES
+=================
+
+## Do Dates
+Do Dates are more flexible than traditional due dates. Simply put, a do date is the day you intend to "do" the task, not the date it has to be completed by.
+
+## Deadlines
+Make yourself accountable by setting deadlines to your projects and tasks.
+
+## Recurring Tasks
+Use Recurring Tasks for actions happening on a fixed period of time or after the task gets completed.
+
+## Reminders
+Use Reminders for those tasks you under any circumstance cannot miss!
+
+## Calendar
+Use Upcoming to see tasks and projects due in the next days and further. You can integrate your Google Calendar to see events as well.
+
+## Board View
+Use Boards (aka Kanban) to get an overview of your projects. You can also drag and drop tasks and headings across different boards.
+
+PRODUCTIVITY FEATURES
+=====================
+
+## Icons & Colors
+Use Icons and Colors for a richer personalized organization of your projects and to-dos.
+
+## Additional Features
+- Memorigi® Cloud to keep your data safe and in sync
+- Sorting & grouping to simplify your workflow
+- Nag me feature to help you reduce procrastination
+- Read aloud to read your due projects and tasks aloud
+- Flexible times to boost your productivity
+- Pinned tasks for those important tasks you don't want to forget about
+- Attachments to safely store your project's documents
+- Productivity stats to stay on top of your progress
+
+AVAILABILITY
+============
+- Memorigi for Web
+- Memorigi for Android
+- Memorigi for Galaxy
