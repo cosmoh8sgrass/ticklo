@@ -7,7 +7,6 @@ import CalendarView from './components/CalendarView';
 import BoardView from './components/BoardView';
 import StatsView from './components/StatsView';
 import { useStore } from './store/useStore';
-import './App.css';
 import { useTheme } from './ThemeContext';
 
 function App() {
@@ -45,7 +44,9 @@ function App() {
       <Header />
       <div className="flex-1 flex overflow-hidden">
         <Sidebar />
-        {renderView()}
+        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
+          {renderView()}
+        </div>
       </div>
     </div>
   );

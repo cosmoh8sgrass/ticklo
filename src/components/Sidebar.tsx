@@ -9,7 +9,7 @@ const Sidebar: React.FC = () => {
     <motion.aside
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
-      className={`w-64 border-r h-full overflow-y-auto transition-colors ${
+      className={`w-64 border-r h-full overflow-y-auto transition-colors scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent ${
         darkMode 
           ? 'bg-gray-900 border-gray-700' 
           : 'bg-white border-gray-200'

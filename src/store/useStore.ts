@@ -281,7 +281,7 @@ export const useStore = create<Store>((set, get) => ({
     field: 'createdAt',
     direction: 'desc',
   },
-  darkMode: false,
+  darkMode: true,
   selectedDate: new Date(),
   templates: [],
   activeTimer: null,
