@@ -1,36 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Toaster } from 'react-hot-toast';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import TaskList from './components/TaskList';
+import CalendarView from './components/CalendarView';
+import BoardView from './components/BoardView';
+import StatsView from './components/StatsView';
+import { useStore } from './store/useStore';
 import './App.css';
 import { useTheme } from './ThemeContext';
 
 function App() {
-  const { theme, toggleTheme } = useTheme();
+  const { view, darkMode } = useStore();
+
+  const renderView = () => {
+    switch (view) {
+      case 'list':
+        return <TaskList />;
+      case 'board':
+        return <BoardView />;
+      case 'calendar':
+        return <CalendarView />;
+      case 'stats':
+        return <StatsView />;
+      default:
+        return <TaskList />;
+    }
+  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="theme-toggle-container">
-          <button 
-            className="theme-toggle" 
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-          >
-            {theme === 'light' ? '🌙' : '☀️'}
-          </button>
-        </div>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`h-screen flex flex-col transition-colors ${
+      darkMode ? 'bg-gray-900' : 'bg-gray-50'
+    }`}>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: darkMode ? '#1f2937' : '#363636',
+            color: '#fff',
+          },
+        }}
+      />
+      <Header />
+      <div className="flex-1 flex overflow-hidden">
+        <Sidebar />
+        {renderView()}
+      </div>
     </div>
   );
 }
