@@ -4,7 +4,7 @@ import { TrendingUp, Clock, Target, Calendar, BarChart3, PieChart } from 'lucide
 import { useStore } from '../store/useStore';
 
 const StatsView: React.FC = () => {
-  const { getProductivityStats, groups } = useStore();
+  const { getProductivityStats, groups, darkMode } = useStore();
   const stats = getProductivityStats();
 
   const completionRate = stats.totalTasks > 0 ? (stats.tasksCompleted / stats.totalTasks) * 100 : 0;
@@ -19,13 +19,23 @@ const StatsView: React.FC = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+      className={`rounded-lg shadow-sm border p-6 transition-colors ${
+        darkMode 
+          ? 'bg-gray-800 border-gray-700' 
+          : 'bg-white border-gray-200'
+      }`}
     >
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm font-medium text-gray-600">{title}</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
-          {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
+          <p className={`text-sm font-medium ${
+            darkMode ? 'text-gray-400' : 'text-gray-600'
+          }`}>{title}</p>
+          <p className={`text-2xl font-bold mt-1 ${
+            darkMode ? 'text-white' : 'text-gray-900'
+          }`}>{value}</p>
+          {subtitle && <p className={`text-xs mt-1 ${
+            darkMode ? 'text-gray-500' : 'text-gray-500'
+          }`}>{subtitle}</p>}
         </div>
         <div className={`p-3 rounded-lg ${color}`}>
           {icon}
@@ -45,10 +55,14 @@ const StatsView: React.FC = () => {
     return (
       <div className="space-y-2">
         <div className="flex justify-between text-sm">
-          <span className="text-gray-600">{label}</span>
-          <span className="font-medium text-gray-900">{value}/{max}</span>
+          <span className={darkMode ? 'text-gray-400' : 'text-gray-600'}>{label}</span>
+          <span className={`font-medium ${
+            darkMode ? 'text-white' : 'text-gray-900'
+          }`}>{value}/{max}</span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className={`w-full rounded-full h-2 ${
+          darkMode ? 'bg-gray-700' : 'bg-gray-200'
+        }`}>
           <div
             className={`h-2 rounded-full ${color}`}
             style={{ width: `${percentage}%` }}
@@ -59,12 +73,16 @@ const StatsView: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 p-6 bg-gray-50">
+    <div className={`flex-1 p-6 transition-colors ${
+      darkMode ? 'bg-gray-900' : 'bg-gray-50'
+    }`}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Productivity Statistics</h1>
-          <p className="text-gray-600">Track your progress and performance</p>
+          <h1 className={`text-2xl font-bold mb-2 ${
+            darkMode ? 'text-white' : 'text-gray-900'
+          }`}>Productivity Statistics</h1>
+          <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>Track your progress and performance</p>
         </div>
 
         {/* Overview Stats */}
@@ -104,9 +122,15 @@ const StatsView: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+            className={`rounded-lg shadow-sm border p-6 transition-colors ${
+              darkMode 
+                ? 'bg-gray-800 border-gray-700' 
+                : 'bg-white border-gray-200'
+            }`}
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+            <h3 className={`text-lg font-semibold mb-6 flex items-center ${
+              darkMode ? 'text-white' : 'text-gray-900'
+            }`}>
               <PieChart size={20} className="mr-2" />
               Tasks by Priority
             </h3>
@@ -136,9 +160,15 @@ const StatsView: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+            className={`rounded-lg shadow-sm border p-6 transition-colors ${
+              darkMode 
+                ? 'bg-gray-800 border-gray-700' 
+                : 'bg-white border-gray-200'
+            }`}
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+            <h3 className={`text-lg font-semibold mb-6 flex items-center ${
+              darkMode ? 'text-white' : 'text-gray-900'
+            }`}>
               <BarChart3 size={20} className="mr-2" />
               Tasks by Group
             </h3>
@@ -165,9 +195,15 @@ const StatsView: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+            className={`rounded-lg shadow-sm border p-6 transition-colors ${
+              darkMode 
+                ? 'bg-gray-800 border-gray-700' 
+                : 'bg-white border-gray-200'
+            }`}
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+            <h3 className={`text-lg font-semibold mb-6 flex items-center ${
+              darkMode ? 'text-white' : 'text-gray-900'
+            }`}>
               <Calendar size={20} className="mr-2" />
               Recent Activity
             </h3>
@@ -177,13 +213,21 @@ const StatsView: React.FC = () => {
                 .sort((a, b) => new Date(b.completedAt!).getTime() - new Date(a.completedAt!).getTime())
                 .slice(0, 5)
                 .map((task) => (
-                  <div key={task.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div key={task.id} className={`flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                    darkMode 
+                      ? 'bg-gray-700' 
+                      : 'bg-gray-50'
+                  }`}>
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
+                      <p className={`text-sm font-medium truncate ${
+                        darkMode ? 'text-white' : 'text-gray-900'
+                      }`}>
                         {task.title}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className={`text-xs ${
+                        darkMode ? 'text-gray-400' : 'text-gray-500'
+                      }`}>
                         Completed {task.completedAt && new Date(task.completedAt).toLocaleDateString()}
                       </p>
                     </div>
@@ -196,25 +240,55 @@ const StatsView: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+            className={`rounded-lg shadow-sm border p-6 transition-colors ${
+              darkMode 
+                ? 'bg-gray-800 border-gray-700' 
+                : 'bg-white border-gray-200'
+            }`}
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-6">Productivity Tips</h3>
+            <h3 className={`text-lg font-semibold mb-6 ${
+              darkMode ? 'text-white' : 'text-gray-900'
+            }`}>Productivity Tips</h3>
             <div className="space-y-4">
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <h4 className="text-sm font-medium text-blue-900 mb-1">Break Down Large Tasks</h4>
-                <p className="text-xs text-blue-700">
+              <div className={`p-4 rounded-lg border transition-colors ${
+                darkMode 
+                  ? 'bg-blue-900/20 border-blue-800' 
+                  : 'bg-blue-50 border-blue-200'
+              }`}>
+                <h4 className={`text-sm font-medium mb-1 ${
+                  darkMode ? 'text-blue-300' : 'text-blue-900'
+                }`}>Break Down Large Tasks</h4>
+                <p className={`text-xs ${
+                  darkMode ? 'text-blue-400' : 'text-blue-700'
+                }`}>
                   Split complex tasks into smaller, manageable subtasks to maintain momentum.
                 </p>
               </div>
-              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                <h4 className="text-sm font-medium text-green-900 mb-1">Set Realistic Deadlines</h4>
-                <p className="text-xs text-green-700">
+              <div className={`p-4 rounded-lg border transition-colors ${
+                darkMode 
+                  ? 'bg-green-900/20 border-green-800' 
+                  : 'bg-green-50 border-green-200'
+              }`}>
+                <h4 className={`text-sm font-medium mb-1 ${
+                  darkMode ? 'text-green-300' : 'text-green-900'
+                }`}>Set Realistic Deadlines</h4>
+                <p className={`text-xs ${
+                  darkMode ? 'text-green-400' : 'text-green-700'
+                }`}>
                   Use do dates to plan when you'll work on tasks, not just when they're due.
                 </p>
               </div>
-              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                <h4 className="text-sm font-medium text-purple-900 mb-1">Track Your Time</h4>
-                <p className="text-xs text-purple-700">
+              <div className={`p-4 rounded-lg border transition-colors ${
+                darkMode 
+                  ? 'bg-purple-900/20 border-purple-800' 
+                  : 'bg-purple-50 border-purple-200'
+              }`}>
+                <h4 className={`text-sm font-medium mb-1 ${
+                  darkMode ? 'text-purple-300' : 'text-purple-900'
+                }`}>Track Your Time</h4>
+                <p className={`text-xs ${
+                  darkMode ? 'text-purple-400' : 'text-purple-700'
+                }`}>
                   Monitor how long tasks actually take to improve future estimates.
                 </p>
               </div>
