@@ -6,6 +6,7 @@ import TaskList from './components/TaskList';
 import CalendarView from './components/CalendarView';
 import BoardView from './components/BoardView';
 import StatsView from './components/StatsView';
+import { TodayView, UpcomingView } from './components/InboxTodayUpcoming';
 import { useStore } from './store/useStore';
 import { useTheme } from './ThemeContext';
 
@@ -16,6 +17,10 @@ function App() {
     switch (view) {
       case 'list':
         return <TaskList />;
+      case 'today':
+        return <TodayView />;
+      case 'upcoming':
+        return <UpcomingView />;
       case 'board':
         return <BoardView />;
       case 'calendar':

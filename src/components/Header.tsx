@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Grid3X3, List, Plus, Search, Moon, Sun, BarChart3, Filter, X } from 'lucide-react';
+import { Calendar, Grid3X3, List, Plus, Search, Moon, Sun, BarChart3, X, Settings } from 'lucide-react';
 import { useStore } from '../store/useStore';
+import { SettingsModal } from './SettingsModal';
+import { readAloudTasks } from '../utils/tts';
 
 const Header: React.FC = () => {
   const { view, setView, addGroup, darkMode, toggleDarkMode, filter, setFilter, clearFilter } = useStore();
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState(filter.search);
+  const [showSettings, setShowSettings] = useState(false);
 
   const handleAddGroup = () => {
     const name = prompt('Enter group name:');
@@ -180,6 +183,21 @@ const Header: React.FC = () => {
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
+          {/* Read Aloud */}
+          <button
+            onClick={() => readAloudTasks(useStore)}
+            className={`p-2 rounded-lg transition-colors ${
+              darkMode 
+                ? 'hover:bg-gray-700 text-gray-300' 
+                : 'hover:bg-gray-100 text-gray-600'
+            }`}
+            title="Read Aloud"
+          >
+            <span className="text-xs font-semibold">TTS</span>
+          </button>
+
+          
+
           {/* Add Group Button */}
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -190,8 +208,24 @@ const Header: React.FC = () => {
             <Plus size={18} />
             <span>Add Group</span>
           </motion.button>
+
+          {/* Settings */}
+          <button
+            onClick={() => setShowSettings(true)}
+            className={`p-2 rounded-lg transition-colors ${
+              darkMode 
+                ? 'hover:bg-gray-700 text-gray-300' 
+                : 'hover:bg-gray-100 text-gray-600'
+            }`}
+            title="Settings"
+          >
+            <Settings size={18} />
+          </button>
         </div>
       </div>
+      {showSettings && (
+        <SettingsModal onClose={() => setShowSettings(false)} />
+      )}
     </motion.header>
   );
 };

@@ -5,7 +5,8 @@ import { useStore } from '../store/useStore';
 import TaskItem from './TaskItem';
 
 const TaskList: React.FC = () => {
-  const { groups, selectedGroupId, addTask, getFilteredTasks, darkMode } = useStore();
+  const { groups, selectedGroupId, addTask, getFilteredTasks, darkMode, filter, setFilter, sort, setSort } = useStore();
+  const { preferences } = useStore();
   const [showAddForm, setShowAddForm] = useState(false);
   const [newTask, setNewTask] = useState({
     title: '',
@@ -31,6 +32,7 @@ const TaskList: React.FC = () => {
         tags: newTask.tags,
         subtasks: [],
         doDate: new Date(),
+        reminder: preferences.defaultReminderMinutesBefore > 0 ? new Date(Date.now() + preferences.defaultReminderMinutesBefore * 60 * 1000) : undefined,
         timeSpent: 0,
         attachments: [],
         dependencies: [],
@@ -101,6 +103,51 @@ const TaskList: React.FC = () => {
             <Plus size={18} />
             <span>Add Task</span>
           </motion.button>
+        </div>
+
+        {/* Filters and Sorting */}
+        <div className={`mb-4 p-3 rounded-lg border ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div>
+              <label className={`block text-xs mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Tags</label>
+              <input
+                type="text"
+                placeholder="comma,separated"
+                onBlur={(e) => setFilter({ tags: e.target.value.split(',').map(t => t.trim()).filter(Boolean) })}
+                className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}
+              />
+            </div>
+            <div>
+              <label className={`block text-xs mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Priority</label>
+              <select multiple onChange={(e) => setFilter({ priority: Array.from(e.target.selectedOptions).map(o => o.value as any) })} className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div>
+              <label className={`block text-xs mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Status</label>
+              <select multiple onChange={(e) => setFilter({ status: Array.from(e.target.selectedOptions).map(o => o.value as any) })} className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+                <option value="overdue">Overdue</option>
+              </select>
+            </div>
+            <div>
+              <label className={`block text-xs mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Sort</label>
+              <select value={`${sort.field}:${sort.direction}`} onChange={(e) => {
+                const [field, direction] = e.target.value.split(':');
+                setSort({ field: field as any, direction: direction as any });
+              }} className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}>
+                <option value="createdAt:desc">Created (newest)</option>
+                <option value="createdAt:asc">Created (oldest)</option>
+                <option value="doDate:asc">Do Date (asc)</option>
+                <option value="deadline:asc">Deadline (asc)</option>
+                <option value="priority:desc">Priority (high first)</option>
+                <option value="timeSpent:desc">Time Spent (desc)</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         {showAddForm && (

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, ChevronDown, ChevronRight, Plus, Trash2, Calendar, Tag, Pin, Play, Pause, Paperclip, Copy } from 'lucide-react';
+import { Check, ChevronDown, ChevronRight, Plus, Trash2, Calendar, Tag, Pin, Play, Pause, Paperclip, Copy, Bell, Clock4 } from 'lucide-react';
 import { useStore, Task } from '../store/useStore';
 import { format } from 'date-fns';
+import { snoozeTask } from '../notifications';
 
 interface TaskItemProps {
   task: Task;
@@ -25,6 +26,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
     activeTimer,
     darkMode
   } = useStore();
+  const storeRef = useStore;
 
   const handleAddSubtask = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,6 +54,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
     } else {
       pinTask(task.id);
     }
+  };
+
+  const handleSnooze = (minutes: number) => {
+    snoozeTask(storeRef, task.id, minutes);
   };
 
   const handleDuplicate = () => {
@@ -151,11 +157,16 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
                     {task.priority}
                   </span>
                   
-                  {task.recurring && (
+              {task.recurring && (
                     <span className="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400">
                       Recurring
                     </span>
                   )}
+              {task.dependencies.length > 0 && (
+                <span className="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                  {task.dependencies.length} deps
+                </span>
+              )}
                   
                   {task.attachments.length > 0 && (
                     <span className="flex items-center text-xs text-gray-500">
@@ -198,6 +209,12 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
                 {isTimerActive ? <Pause size={14} /> : <Play size={14} />}
               </button>
               
+              {task.reminder && (
+                <span className="text-xs text-blue-500 px-2 py-1 bg-blue-50 dark:bg-blue-900/20 rounded">
+                  Reminds {format(task.reminder, 'MMM d, HH:mm')}
+                </span>
+              )}
+
               {task.subtasks.length > 0 && (
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
@@ -215,6 +232,38 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
               >
                 <Copy size={14} />
               </button>
+
+              <label className="p-1 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700" title="Attach file">
+                <input type="file" className="hidden" onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    useStore.getState().addAttachment(task.id, {
+                      name: file.name,
+                      size: file.size,
+                      type: file.type,
+                      url: reader.result as string,
+                    });
+                  };
+                  reader.readAsDataURL(file);
+                }} />
+                <Paperclip size={14} className="text-gray-500" />
+              </label>
+
+              <div className="relative group">
+                <button
+                  className="p-1 hover:bg-gray-100 text-gray-500 rounded"
+                  title="Reminder"
+                >
+                  <Bell size={14} />
+                </button>
+                <div className={`absolute right-0 mt-1 hidden group-hover:block z-10 rounded border shadow ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+                  <button onClick={() => handleSnooze(5)} className="block px-3 py-1 text-xs w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">Snooze 5m</button>
+                  <button onClick={() => handleSnooze(10)} className="block px-3 py-1 text-xs w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">Snooze 10m</button>
+                  <button onClick={() => handleSnooze(60)} className="block px-3 py-1 text-xs w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700">Snooze 1h</button>
+                </div>
+              </div>
               
               <button
                 onClick={() => deleteTask(task.id)}

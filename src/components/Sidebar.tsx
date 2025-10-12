@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
+import { Inbox, CalendarDays, Calendar as CalendarIcon, BarChart3 } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
-  const { groups, selectedGroupId, setSelectedGroup, darkMode } = useStore();
+  const { groups, selectedGroupId, setSelectedGroup, darkMode, setView } = useStore();
 
   return (
     <motion.aside
@@ -16,6 +17,44 @@ const Sidebar: React.FC = () => {
       }`}
     >
       <div className="p-4">
+        <div className="mb-6 space-y-2">
+          <button
+            onClick={() => setView('list')}
+            className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-colors text-left ${
+              darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-50'
+            }`}
+          >
+            <Inbox size={16} />
+            <span className={darkMode ? 'text-gray-200' : 'text-gray-800'}>Inbox</span>
+          </button>
+          <button
+            onClick={() => setView('today')}
+            className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-colors text-left ${
+              darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-50'
+            }`}
+          >
+            <CalendarIcon size={16} />
+            <span className={darkMode ? 'text-gray-200' : 'text-gray-800'}>Today</span>
+          </button>
+          <button
+            onClick={() => setView('upcoming')}
+            className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-colors text-left ${
+              darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-50'
+            }`}
+          >
+            <CalendarDays size={16} />
+            <span className={darkMode ? 'text-gray-200' : 'text-gray-800'}>Upcoming</span>
+          </button>
+          <button
+            onClick={() => setView('stats')}
+            className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-colors text-left ${
+              darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-50'
+            }`}
+          >
+            <BarChart3 size={16} />
+            <span className={darkMode ? 'text-gray-200' : 'text-gray-800'}>Stats</span>
+          </button>
+        </div>
         <h2 className={`text-sm font-semibold uppercase tracking-wide mb-4 ${
           darkMode ? 'text-gray-400' : 'text-gray-500'
         }`}>

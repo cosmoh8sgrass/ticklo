@@ -109,6 +109,13 @@ const StatsView: React.FC = () => {
             color="bg-purple-500"
           />
           <StatCard
+            title="Streak"
+            value={`${stats.habitsStreak}d`}
+            subtitle="Days in a row"
+            icon={<TrendingUp size={24} className="text-white" />}
+            color="bg-pink-500"
+          />
+          <StatCard
             title="Most Productive"
             value={stats.mostProductiveDay}
             subtitle="Day of the week"
@@ -229,6 +236,9 @@ const StatsView: React.FC = () => {
                         darkMode ? 'text-gray-400' : 'text-gray-500'
                       }`}>
                         Completed {task.completedAt && new Date(task.completedAt).toLocaleDateString()}
+                        {task.habit && (
+                          <span className="ml-2 inline-block px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300">Streak {task.habit.streak}</span>
+                        )}
                       </p>
                     </div>
                   </div>
