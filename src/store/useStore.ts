@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
-import { isSameDay, isAfter, isBefore, addDays } from 'date-fns';
+import { isSameDay, isAfter, isBefore, addDays, addWeeks, addMonths, addYears } from 'date-fns';
 
 export interface Task {
   id: string;
@@ -26,6 +26,14 @@ export interface Task {
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
+  section?: string;
+  timeOfDay?: 'morning' | 'afternoon' | 'evening' | 'any';
+  habit?: {
+    frequency: 'daily' | 'weekly' | 'monthly';
+    targetPerPeriod: number; // e.g., times per week
+    streak: number;
+    lastDoneDate?: Date;
+  };
 }
 
 export interface RecurringPattern {
@@ -93,18 +101,37 @@ export interface ProductivityStats {
     completed: number;
     created: number;
   }>;
+  habitsStreak: number;
+}
+
+export interface Preferences {
+  enableNagMe: boolean;
+  nagMeIntervalMinutes: number;
+  defaultReminderMinutesBefore: number;
+  timeFormat: '12h' | '24h';
+  weekStartsOn: 0 | 1; // Sunday or Monday
+  ttsEnabled: boolean;
+}
+
+export interface CalendarEvent {
+  id: string;
+  title: string;
+  start: Date;
+  end?: Date;
 }
 
 interface Store {
   groups: Group[];
   selectedGroupId: string | null;
-  view: 'list' | 'board' | 'calendar' | 'stats';
+  view: 'list' | 'today' | 'upcoming' | 'board' | 'calendar' | 'stats';
   filter: Filter;
   sort: SortOption;
   darkMode: boolean;
   selectedDate: Date;
   templates: Task[];
   activeTimer: string | null; // task ID with active timer
+  preferences: Preferences;
+  calendarEvents: CalendarEvent[];
   
   // Basic Actions
   addGroup: (name: string, color: string, icon: string, description?: string) => void;
@@ -112,7 +139,10 @@ interface Store {
   deleteGroup: (id: string) => void;
   archiveGroup: (id: string) => void;
   setSelectedGroup: (id: string | null) => void;
-  setView: (view: 'list' | 'board' | 'calendar' | 'stats') => void;
+  setView: (view: 'list' | 'today' | 'upcoming' | 'board' | 'calendar' | 'stats') => void;
+  setPreferences: (prefs: Partial<Preferences>) => void;
+  setCalendarEvents: (events: CalendarEvent[]) => void;
+  addCalendarEvent: (event: CalendarEvent) => void;
   
   // Task Actions
   addTask: (groupId: string, task: Omit<Task, 'id' | 'groupId' | 'createdAt' | 'updatedAt'>) => void;
@@ -285,6 +315,15 @@ export const useStore = create<Store>((set, get) => ({
   selectedDate: new Date(),
   templates: [],
   activeTimer: null,
+  preferences: {
+    enableNagMe: false,
+    nagMeIntervalMinutes: 15,
+    defaultReminderMinutesBefore: 30,
+    timeFormat: '12h',
+    weekStartsOn: 0,
+    ttsEnabled: false,
+  },
+  calendarEvents: [],
 
   // Basic Actions
   addGroup: (name, color, icon, description) => {
@@ -335,6 +374,18 @@ export const useStore = create<Store>((set, get) => ({
     set({ view });
   },
 
+  setPreferences: (prefs) => {
+    set((state) => ({ preferences: { ...state.preferences, ...prefs } }));
+  },
+
+  setCalendarEvents: (events) => {
+    set({ calendarEvents: events });
+  },
+
+  addCalendarEvent: (event) => {
+    set((state) => ({ calendarEvents: [...state.calendarEvents, event] }));
+  },
+
   // Task Actions
   addTask: (groupId, task) => {
     const newTask: Task = {
@@ -376,8 +427,8 @@ export const useStore = create<Store>((set, get) => ({
   },
 
   toggleTask: (taskId) => {
-    set((state) => ({
-      groups: state.groups.map((group) => ({
+    set((state) => {
+      let nextGroups = state.groups.map((group) => ({
         ...group,
         tasks: group.tasks.map((task) =>
           task.id === taskId
@@ -390,8 +441,84 @@ export const useStore = create<Store>((set, get) => ({
             : task
         ),
         updatedAt: new Date(),
-      })),
-    }));
+      }));
+
+      // If task is completed and recurring, create next instance
+      const allTasks = nextGroups.flatMap(g => g.tasks);
+      const toggled = allTasks.find(t => t.id === taskId);
+      if (toggled && toggled.completed) {
+        // Habit streaks (simplified)
+        if (toggled.habit) {
+          const today = new Date();
+          const last = toggled.habit.lastDoneDate ? new Date(toggled.habit.lastDoneDate) : undefined;
+          let continueStreak = true;
+          if (toggled.habit.frequency === 'daily' && last) {
+            const diffDays = Math.floor((today.getTime() - last.getTime()) / (24 * 60 * 60 * 1000));
+            continueStreak = diffDays <= 1;
+          }
+          toggled.habit = {
+            ...toggled.habit,
+            streak: continueStreak ? toggled.habit.streak + 1 : 1,
+            lastDoneDate: today,
+          };
+        }
+
+        if (toggled.recurring) {
+        const baseDate = toggled.doDate || new Date();
+        let nextDate: Date = baseDate;
+        const pattern = toggled.recurring;
+        switch (pattern.type) {
+          case 'daily':
+            nextDate = addDays(baseDate, pattern.interval || 1);
+            break;
+          case 'weekly':
+            if (pattern.daysOfWeek && pattern.daysOfWeek.length > 0) {
+              // Find next day of week after baseDate
+              const currentDow = baseDate.getDay();
+              const sorted = [...pattern.daysOfWeek].sort((a, b) => a - b);
+              const nextDow = sorted.find(d => d > currentDow) ?? sorted[0];
+              const delta = (nextDow + 7 - currentDow) % 7 || 7;
+              nextDate = addDays(baseDate, delta);
+            } else {
+              nextDate = addWeeks(baseDate, pattern.interval || 1);
+            }
+            break;
+          case 'monthly':
+            nextDate = addMonths(baseDate, pattern.interval || 1);
+            if (pattern.dayOfMonth) nextDate.setDate(pattern.dayOfMonth);
+            break;
+          case 'yearly':
+            nextDate = addYears(baseDate, pattern.interval || 1);
+            break;
+          case 'custom':
+            nextDate = addDays(baseDate, pattern.interval || 1);
+            break;
+        }
+
+          const nextTask: Task = {
+            ...toggled,
+            id: uuidv4(),
+            completed: false,
+            completedAt: undefined,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            doDate: nextDate,
+            // shift reminder if exists by same delta
+            reminder: toggled.reminder
+              ? new Date(toggled.reminder.getTime() + (nextDate.getTime() - baseDate.getTime()))
+              : undefined,
+          };
+
+          nextGroups = nextGroups.map(g =>
+            g.id === toggled.groupId
+              ? { ...g, tasks: [...g.tasks, nextTask], updatedAt: new Date() }
+              : g
+          );
+        }
+      }
+
+      return { groups: nextGroups };
+    });
   },
 
   duplicateTask: (taskId) => {
@@ -646,6 +773,14 @@ export const useStore = create<Store>((set, get) => ({
       tasks = tasks.filter(task => task.groupId === state.filter.groupId);
     }
     
+    if (state.filter.dateRange) {
+      const { start, end } = state.filter.dateRange;
+      tasks = tasks.filter(task => {
+        if (!task.doDate) return false;
+        return !isBefore(task.doDate, start) && !isAfter(task.doDate, end);
+      });
+    }
+    
     // Apply sorting
     tasks.sort((a, b) => {
       let aValue: any = a[state.sort.field];
@@ -847,7 +982,15 @@ export const useStore = create<Store>((set, get) => ({
     const state = get();
     const allTasks = state.groups.flatMap(g => g.tasks);
     const completedTasks = allTasks.filter(t => t.completed);
-    
+    // Simplified streak: consecutive days with at least 1 completed task
+    const days = new Set(completedTasks.map(t => new Date(t.completedAt || t.updatedAt).toDateString()));
+    let streak = 0;
+    let day = new Date();
+    while (days.has(day.toDateString())) {
+      streak += 1;
+      day = addDays(day, -1);
+    }
+
     return {
       tasksCompleted: completedTasks.length,
       totalTasks: allTasks.length,
@@ -863,6 +1006,7 @@ export const useStore = create<Store>((set, get) => ({
         return acc;
       }, {} as Record<string, number>),
       weeklyProgress: [], // Simplified
+      habitsStreak: streak,
     };
   },
 

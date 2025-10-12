@@ -5,7 +5,7 @@ import { useStore } from '../store/useStore';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, startOfWeek, endOfWeek } from 'date-fns';
 
 const CalendarView: React.FC = () => {
-  const { selectedDate, setSelectedDate, getTasksForDate, getOverdueTasks, getUpcomingTasks, darkMode, groups, selectedGroupId, addTask } = useStore();
+  const { selectedDate, setSelectedDate, getTasksForDate, getOverdueTasks, getUpcomingTasks, darkMode, groups, selectedGroupId, addTask, preferences, calendarEvents } = useStore();
   const [currentMonth, setCurrentMonth] = useState(selectedDate);
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
   const [newTask, setNewTask] = useState({
@@ -84,6 +84,7 @@ const CalendarView: React.FC = () => {
         tags: newTask.tags,
         subtasks: [],
         doDate: selectedDate,
+        reminder: preferences.defaultReminderMinutesBefore > 0 ? new Date(selectedDate.getTime() - preferences.defaultReminderMinutesBefore * 60 * 1000) : undefined,
         timeSpent: 0,
         attachments: [],
         dependencies: [],
@@ -227,6 +228,11 @@ const CalendarView: React.FC = () => {
                             title={task.title}
                           >
                             {task.title}
+                          </div>
+                        ))}
+                        {calendarEvents.filter(ev => isSameDay(ev.start, day)).slice(0, 2).map(ev => (
+                          <div key={ev.id} className={`text-xs p-1 rounded truncate ${darkMode ? 'bg-purple-900/20 text-purple-300' : 'bg-purple-100 text-purple-800'}`} title={ev.title}>
+                            {ev.title}
                           </div>
                         ))}
                         {dayTasks.length > 3 && (
