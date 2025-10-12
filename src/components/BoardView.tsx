@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, MoreHorizontal, Clock, AlertCircle, CheckCircle, Pin } from 'lucide-react';
+import { Plus, MoreHorizontal, Clock, CheckCircle, Pin } from 'lucide-react';
 import { useStore, Task } from '../store/useStore';
 import { format } from 'date-fns';
 
 const BoardView: React.FC = () => {
-  const { groups, selectedGroupId, addTask, updateTask, moveTask, darkMode } = useStore();
+  const { groups, selectedGroupId, addTask, updateTask, darkMode } = useStore();
   const [draggedTask, setDraggedTask] = useState<Task | null>(null);
   const [showAddForm, setShowAddForm] = useState<string | null>(null);
   const [newTask, setNewTask] = useState({

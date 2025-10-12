@@ -8,7 +8,6 @@ import BoardView from './components/BoardView';
 import StatsView from './components/StatsView';
 import { TodayView, UpcomingView } from './components/InboxTodayUpcoming';
 import { useStore } from './store/useStore';
-import { useTheme } from './ThemeContext';
 
 function App() {
   const { view, darkMode } = useStore();

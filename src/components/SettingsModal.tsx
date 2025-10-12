@@ -29,12 +29,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ onClose }) => {
     onClose();
   };
 
-  const handleExport = () => exportBackup(useStore);
-  const handleImport = async (file?: File) => {
-    if (!file) return;
-    await importBackup(useStore, file);
-    onClose();
-  };
+  
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

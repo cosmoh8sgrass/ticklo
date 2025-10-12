@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, ChevronDown, ChevronRight, Plus, Trash2, Calendar, Tag, Pin, Play, Pause, Paperclip, Copy, Bell, Clock4 } from 'lucide-react';
+import { Check, ChevronDown, ChevronRight, Plus, Trash2, Calendar, Tag, Pin, Play, Pause, Paperclip, Copy, Bell } from 'lucide-react';
 import { useStore, Task } from '../store/useStore';
 import { format } from 'date-fns';
 import { snoozeTask } from '../notifications';

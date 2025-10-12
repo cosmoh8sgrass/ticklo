@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Plus, Clock, AlertCircle, CheckCircle, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Clock, AlertCircle, CheckCircle } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, startOfWeek, endOfWeek } from 'date-fns';
 
 const CalendarView: React.FC = () => {
-  const { selectedDate, setSelectedDate, getTasksForDate, getOverdueTasks, getUpcomingTasks, darkMode, groups, selectedGroupId, addTask, preferences, calendarEvents } = useStore();
+  const { selectedDate, setSelectedDate, getTasksForDate, getOverdueTasks, getUpcomingTasks, darkMode, calendarEvents } = useStore();
   const [currentMonth, setCurrentMonth] = useState(selectedDate);
-  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
-  const [newTask, setNewTask] = useState({
-    title: '',
-    description: '',
-    priority: 'medium' as 'low' | 'medium' | 'high',
-    tags: [] as string[],
-  });
-  const [newTag, setNewTag] = useState('');
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
@@ -64,55 +56,7 @@ const CalendarView: React.FC = () => {
     return classes;
   };
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high': return 'text-red-500';
-      case 'medium': return 'text-yellow-500';
-      case 'low': return 'text-green-500';
-      default: return 'text-gray-500';
-    }
-  };
-
-  const handleAddTask = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newTask.title.trim() && selectedGroupId) {
-      addTask(selectedGroupId, {
-        title: newTask.title.trim(),
-        description: newTask.description.trim() || undefined,
-        completed: false,
-        priority: newTask.priority,
-        tags: newTask.tags,
-        subtasks: [],
-        doDate: selectedDate,
-        reminder: preferences.defaultReminderMinutesBefore > 0 ? new Date(selectedDate.getTime() - preferences.defaultReminderMinutesBefore * 60 * 1000) : undefined,
-        timeSpent: 0,
-        attachments: [],
-        dependencies: [],
-        isPinned: false,
-        isTemplate: false,
-      });
-      setNewTask({ title: '', description: '', priority: 'medium', tags: [] });
-      setShowAddTaskModal(false);
-    }
-  };
-
-  const handleAddTag = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newTag.trim() && !newTask.tags.includes(newTag.trim())) {
-      setNewTask(prev => ({
-        ...prev,
-        tags: [...prev.tags, newTag.trim()]
-      }));
-      setNewTag('');
-    }
-  };
-
-  const removeTag = (tagToRemove: string) => {
-    setNewTask(prev => ({
-      ...prev,
-      tags: prev.tags.filter(tag => tag !== tagToRemove)
-    }));
-  };
+  
 
   return (
     <div className={`flex-1 p-6 transition-colors ${
@@ -124,19 +68,7 @@ const CalendarView: React.FC = () => {
           <h1 className={`text-2xl font-bold ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>Calendar</h1>
-          <div className="flex items-center space-x-4">
-            <button 
-              onClick={() => setShowAddTaskModal(true)}
-              className={`p-2 rounded-lg transition-colors ${
-                darkMode 
-                  ? 'hover:bg-gray-700 text-gray-300' 
-                  : 'hover:bg-gray-200 text-gray-600'
-              }`}
-              title="Add Task"
-            >
-              <Plus size={20} />
-            </button>
-          </div>
+          <div className="flex items-center space-x-4" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from '../store/useStore';
-import { isToday, isTomorrow, isAfter, startOfDay } from 'date-fns';
+import { isToday, isAfter, startOfDay } from 'date-fns';
 import TaskItem from './TaskItem';
 
 export const InboxView: React.FC = () => {
