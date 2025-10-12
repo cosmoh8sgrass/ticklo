@@ -1,21 +1,11 @@
 import { StoreApi } from 'zustand';
-import { formatISO, parseISO } from 'date-fns';
 import type { Task, Group } from './store/useStore';
 
 // Simple IndexedDB wrapper via idb-keyval style minimal API
 const DB_NAME = 'ticklo-db-v1';
 const STORE_KEY = 'ticklo-state';
 
-function openDb(): Promise<IDBDatabase> {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, 1);
-    request.onupgradeneeded = () => {
-      // noop - using single key in object store emulated via localForage-like approach
-    };
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
-}
+// Removed unused openDb helper
 
 async function putRaw(value: any) {
   // Fallback to localStorage for simplicity and robustness in CRA

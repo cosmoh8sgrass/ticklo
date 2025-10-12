@@ -5,7 +5,7 @@ import { useStore } from '../store/useStore';
 import TaskItem from './TaskItem';
 
 const TaskList: React.FC = () => {
-  const { groups, selectedGroupId, addTask, getFilteredTasks, darkMode, filter, setFilter, sort, setSort } = useStore();
+  const { groups, selectedGroupId, addTask, getFilteredTasks, darkMode, setFilter, sort, setSort } = useStore();
   const { preferences } = useStore();
   const [showAddForm, setShowAddForm] = useState(false);
   const [newTask, setNewTask] = useState({

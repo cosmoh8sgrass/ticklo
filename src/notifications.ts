@@ -14,13 +14,7 @@ async function ensurePermission() {
   }
 }
 
-function scheduleTimeout(task: Task, onFire: () => void) {
-  if (!task.reminder) return;
-  const now = Date.now();
-  const when = new Date(task.reminder).getTime();
-  const delay = Math.max(0, when - now);
-  window.setTimeout(onFire, delay);
-}
+// Removed unused scheduleTimeout helper
 
 function notifyTask(task: Task, actions?: Array<{ action: string; title: string }>) {
   if (!canNotify() || Notification.permission !== 'granted') return;

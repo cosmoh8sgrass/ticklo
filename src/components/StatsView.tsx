@@ -181,7 +181,6 @@ const StatsView: React.FC = () => {
             </h3>
             <div className="space-y-4">
               {Object.entries(stats.tasksByGroup).map(([groupName, count], index) => {
-                const group = groups.find(g => g.name === groupName);
                 const colors = ['bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-orange-500', 'bg-pink-500'];
                 const color = colors[index % colors.length];
                 

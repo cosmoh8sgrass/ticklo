@@ -6,7 +6,7 @@ import { SettingsModal } from './SettingsModal';
 import { readAloudTasks } from '../utils/tts';
 
 const Header: React.FC = () => {
-  const { view, setView, addGroup, darkMode, toggleDarkMode, filter, setFilter, clearFilter } = useStore();
+  const { view, setView, addGroup, darkMode, toggleDarkMode, filter, setFilter } = useStore();
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState(filter.search);
   const [showSettings, setShowSettings] = useState(false);
